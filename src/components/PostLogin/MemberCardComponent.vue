@@ -12,62 +12,27 @@ import { useAuthStore } from '../../stores/authStore'
     </v-row>
     <v-row justify="center">
       <RouterLink class="text-decoration-none" to="/user/members/info">
-        <v-btn
-          class="ma-2"
-          outlined
-          color="teal darken-4"
-          width="200"
-          @click="getSeniorID"
-          >Información</v-btn
-        >
+        <v-btn class="ma-2" outlined color="teal darken-4" width="200" @click="getSeniorID">Información</v-btn>
       </RouterLink>
     </v-row>
     <v-row justify="center font-weight-bold">
       <RouterLink class="text-decoration-none" to="/user/members/contacts">
-        <v-btn
-          class="ma-2"
-          outlined
-          color="teal darken-4"
-          width="200"
-          @click="getSeniorID"
-          >Ver contactos</v-btn
-        >
+        <v-btn class="ma-2" outlined color="teal darken-4" width="200" @click="getSeniorID">Ver contactos</v-btn>
       </RouterLink>
     </v-row>
     <v-row justify="center font-weight-bold">
       <RouterLink class="text-decoration-none" to="/user/members/newcontact">
-        <v-btn
-          class="ma-2"
-          outlined
-          color="teal darken-4"
-          width="200"
-          @click="getSeniorID"
-          >Añadir contactos</v-btn
-        >
+        <v-btn class="ma-2" outlined color="teal darken-4" width="200" @click="getSeniorID">Añadir contactos</v-btn>
       </RouterLink>
     </v-row>
     <v-row justify="center font-weight-bold">
-      <RouterLink class="text-decoration-none" to="/signup">
-        <v-btn
-          class="ma-2"
-          outlined
-          color="teal darken-4"
-          width="200"
-          @click="getSeniorID"
-          >Añadir foto</v-btn
-        >
+      <RouterLink class="text-decoration-none" to="/user/members/addphoto">
+        <v-btn class="ma-2" outlined color="teal darken-4" width="200" @click="getSeniorID">Añadir foto</v-btn>
       </RouterLink>
     </v-row>
     <v-row justify="center font-weight-bold">
       <RouterLink class="text-decoration-none" to="/user/members/reminders">
-        <v-btn
-          class="ma-2"
-          outlined
-          color="teal darken-4"
-          width="200"
-          @click="getSeniorID"
-          >Recordatorios</v-btn
-        >
+        <v-btn class="ma-2" outlined color="teal darken-4" width="200" @click="getSeniorID">Recordatorios</v-btn>
       </RouterLink>
     </v-row>
   </v-container>
@@ -90,4 +55,6 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

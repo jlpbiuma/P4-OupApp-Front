@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({
-  baseURL: 'http://localhost:3000/api'
+  baseURL: 'https://p4-oupapp-back-production.up.railway.app/api'
 })
 
 async function signup (newUser) {
@@ -83,6 +83,11 @@ async function postActivityBySeniorID (token, newActivity, seniorID) {
   return response.data
 }
 
+async function postNewPhoto (token, newPhoto, seniorID) {
+  const response = await API.post(`/photo/${seniorID}`, newPhoto, { headers: { token } })
+  return response.data
+}
+
 export default {
   login,
   signup,
@@ -99,5 +104,6 @@ export default {
   getUserByID,
   putUserByID,
   getAllActivitiesBySeniorID,
-  postActivityBySeniorID
+  postActivityBySeniorID,
+  postNewPhoto
 }
