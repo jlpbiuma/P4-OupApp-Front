@@ -28,6 +28,7 @@ export default {
     const token = this.authStore.token
     const seniorID = this.authStore.seniorID
     this.contacts = await API.getAllContactsBySeniorID(token, seniorID)
+    console.log(this.contacts)
   }
 }
 </script>

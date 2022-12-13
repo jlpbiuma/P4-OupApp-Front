@@ -6,6 +6,7 @@ import { useAuthStore } from '../../stores/authStore.js'
     <v-container>
         <v-row justify="center pt-2">
             <div>
+                <v-img :src="contact.url"></v-img>
                 {{ contact.apodo }}
             </div>
         </v-row>
@@ -20,6 +21,9 @@ export default {
         return {
             authStore: useAuthStore()
         }
+    },
+    async created () {
+
     }
 }
 </script>

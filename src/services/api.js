@@ -54,7 +54,10 @@ async function putFamilyMemberBySeniorID (token, editSenior, seniorID) {
   return response.data
 }
 
-async function addNewContact (token, newContact) {
+async function addNewContact (token, file, newContact, seniorID) {
+  const url = await firebase.uploadContactPhoto(seniorID, file, newContact.apodo)
+  newContact.image = url
+  console.log(newContact)
   const response = await API.post('/contact/', newContact, { headers: { token } })
   return response.data
 }
@@ -85,7 +88,7 @@ async function postActivityBySeniorID (token, newActivity, seniorID) {
 }
 
 async function postNewPhoto (token, file, objectPhoto, seniorID) {
-  const url = await firebase.upload(seniorID, file)
+  const url = await firebase.uploadPhoto(seniorID, file)
   objectPhoto.image = url
   const response = await API.post('/photo/', objectPhoto, { headers: { token } })
   return response.data

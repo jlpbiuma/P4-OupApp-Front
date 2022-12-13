@@ -5,6 +5,7 @@ import API from '../../services/api.js'
 
 <template>
   <v-container>
+    <v-file-input type="file" v-model="file" ref="file" label="Foto" accept="image/*"></v-file-input>
     <v-text-field
       v-model="newContact.apodo"
       label="Apodo"
@@ -26,10 +27,8 @@ export default {
       newContact: {
         apodo: '',
         phone: '',
-        profilePhoto: {
-          base: 'sdfgsdfg',
-          data: 'sdfgsdfg'
-        }
+        image: '',
+        file: null
       },
       authStore: useAuthStore()
     }
@@ -39,10 +38,7 @@ export default {
       const sendContact = this.newContact
       sendContact.id_c = this.authStore.id
       sendContact.id_s = this.authStore.seniorID
-      const response = await API.addNewContact(
-        this.authStore.token,
-        sendContact
-      )
+      const response = await API.addNewContact(this.authStore.token, this.file, sendContact, this.authStore.seniorID)
       this.$router.push('/user')
       console.log(response)
     }

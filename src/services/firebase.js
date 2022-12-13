@@ -13,22 +13,49 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const storage = getStorage(app)
 
+async function simpleDownload (path) {
+    return await getDownloadURL(ref(storage, path))
+}
+
+async function simpleUpload (path, file) {
+    const imageRef = ref(storage, path)
+    const response = await uploadBytes(imageRef, file)
+    return response.metadata.fullPath
+}
+
 async function downloadMutiplePhotos (objectPhoto) {
     const photos = []
     for (const photo of objectPhoto.data) {
-        photo.url = await getDownloadURL(ref(storage, photo.image))
+        photo.url = await simpleDownload(photo.image)
         photos.push(photo)
     }
     return photos
 }
 
-async function upload (seniorID, file) {
-    const imageRef = ref(storage, `photos/${seniorID}/${file.name}`)
-    const response = await uploadBytes(imageRef, file)
-    return response.metadata.fullPath
+async function uploadPhoto (seniorID, file) {
+    return await simpleUpload(`photos/${seniorID}/${file.name}`, file)
+}
+
+async function uploadProfilePhoto (clientID, file) {
+    return await simpleUpload(`profile/${clientID}`, file)
+}
+
+async function getProfilePhoto (clientID) {
+    return await simpleDownload(`profile/${clientID}`)
+}
+
+async function uploadContactPhoto (seniorID, file, apodo) {
+    return await simpleUpload(`contact/${seniorID}/${apodo}`, file)
+}
+
+async function getContactPhoto (seniorID, apodo) {
+    return await simpleDownload(`contact/${seniorID}/${apodo}`)
 }
 
 export default {
-    upload,
-    downloadMutiplePhotos
+    uploadPhoto,
+    downloadMutiplePhotos,
+    uploadProfilePhoto,
+    getProfilePhoto,
+    uploadContactPhoto
 }
