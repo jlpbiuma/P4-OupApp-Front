@@ -1,4 +1,5 @@
 import axios from 'axios'
+import firebase from './firebase'
 
 const API = axios.create({
   baseURL: 'http://localhost:3000/api'
@@ -83,9 +84,17 @@ async function postActivityBySeniorID (token, newActivity, seniorID) {
   return response.data
 }
 
-async function postNewPhoto (token, newPhoto) {
-  const response = await API.post('/photo/', newPhoto, { headers: { token }, 'Content-Type': 'multipart/form-data' })
+async function postNewPhoto (token, file, objectPhoto, seniorID) {
+  const url = await firebase.upload(seniorID, file)
+  objectPhoto.image = url
+  const response = await API.post('/photo/', objectPhoto, { headers: { token } })
   return response.data
+}
+
+async function getPhotosBySeniorID (token, seniorID) {
+  const objectPhoto = await API.get(`/photo/${seniorID}`, { headers: { token } })
+  const photos = firebase.downloadMutiplePhotos(objectPhoto)
+  return photos
 }
 
 export default {
@@ -105,5 +114,6 @@ export default {
   putUserByID,
   getAllActivitiesBySeniorID,
   postActivityBySeniorID,
-  postNewPhoto
+  postNewPhoto,
+  getPhotosBySeniorID
 }

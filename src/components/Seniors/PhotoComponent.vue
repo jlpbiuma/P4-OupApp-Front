@@ -1,3 +1,8 @@
+<script setup>
+import API from '../../services/api.js'
+import { useAuthStore } from '../../stores/authStore'
+</script>
+
 <template>
     <v-container width="400" height="844">
         <v-card class="mx-auto" max-width="400" max-height="844">
@@ -6,10 +11,10 @@
             </v-toolbar>
         </v-card>
         <v-card class="mx-auto pt-20" max-width="400">
-            <v-carousel> <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src"><v-card elevation="2"
+            <v-carousel> <v-carousel-item v-for="(photo, index) in photos" :key="index" :src="photo.url"><v-card elevation="2"
                         shaped tile>
                         <b>
-                            <p>{{ comments[i] }}</p>
+                            <p>{{ photo.comment }}</p>
                         </b>
                     </v-card> </v-carousel-item>
             </v-carousel>
@@ -32,18 +37,12 @@ export default {
     name: 'PhotoComponent',
     data () {
         return {
-            items: [{
-                src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-            },
-            {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-            }
-            ],
-            comments: [
-                'Ardilli comiendo almendras',
-                'Nubes en el cielo'
-            ]
+            photos: null,
+            authStore: useAuthStore()
         }
+    },
+    async created () {
+        this.photos = await API.getPhotosBySeniorID(this.authStore.token, this.authStore.seniorID)
     }
 }
 </script>

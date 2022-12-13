@@ -6,8 +6,7 @@ import { useAuthStore } from '../../stores/authStore'
 <template>
     <v-container id="form">
         <v-text-field v-model="comment" :rules="rules" counter="25" label="Comentario"></v-text-field>
-        <v-file-input type="file" v-model="file" ref="file" label="Foto" accept="image/*"
-            v-on:change="handleFileUpload"></v-file-input>
+        <v-file-input type="file" v-model="file" ref="file" label="Foto" accept="image/*"></v-file-input>
         <v-button @click="addPhoto">Agregar</v-button>
     </v-container>
 </template>
@@ -19,36 +18,19 @@ export default {
             comment: '',
             file: null,
             authStore: useAuthStore(),
-            data: null
+            data: null,
+            sourceImage: null
         }
     },
     methods: {
         async addPhoto () {
-            const reader = new FileReader()
-            reader.readAsText(this.file)
-            reader.onload = e => {
-                this.imageUrl = e.target.result
-                reader.readAsDataURL(this.file)
-                console.log('1')
-            }
-            console.log('2')
-            const photoObject = {
+            const objectPhoto = {
                 comment: this.comment,
-                file: this.file,
-                id_s: this.authStore.seniorID
+                date: new Date(),
+                id_s: this.authStore.seniorID,
+                id_c: this.authStore.id
             }
-            await API.postNewPhoto(this.authStore.token, photoObject)
-        },
-        handleFileUpload () {
-            /*
-            const reader = new FileReader()
-            reader.readAsText(this.file)
-            reader.onload = e => {
-                this.imageUrl = e.target.result
-                reader.readAsDataURL(this.file)
-                console.log(this.imageUrl)
-            }
-            */
+            await API.postNewPhoto(this.authStore.token, this.file, objectPhoto, this.authStore.seniorID)
         }
     }
 }
