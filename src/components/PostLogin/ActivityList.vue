@@ -6,19 +6,25 @@ import { useAuthStore } from '../../stores/authStore.js'
 
 <template>
     <div>
-        <v-row justify="center pt-2">
-            {{member.name}}
-            <div v-if="activities.length > 0">
-                <div v-for="(activity, index) in activities" :key="index">
+        <div>
+            <div class="d-flex justify-center mt-8 teal--text">
+            <v-card  class="pl-2 pr-2 teal white--text font-weight-bold" elevation="0">{{member.name}}</v-card>
+            </div>
+            <v-container class="d-flex justify-center">
+            <v-card width="250" height="auto" outlined class="pa-5" v-if="activities.length > 0">
+                <v-row  justify="center" v-for="(activity, index) in activities" :key="index">
                     <ActivityCard :activity="activity"></ActivityCard>
-                </div>
-            </div>
-        </v-row>
-        <v-row justify="center pt-2">
+                </v-row>
+            </v-card>
+            </v-container>
+        </div>
+        <div class="d-flex justify-center">
             <div v-if="activities.length <= 0">
-                <p>No activities found</p>
+                <v-row class="mb-1">
+                <v-card width="auto" height="auto" outlined class="pa-2"> <em class="teal--text">Sin actividad</em> </v-card>
+                </v-row>
             </div>
-        </v-row>
+        </div>
     </div>
 </template>
 
@@ -43,6 +49,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.v-card{
+    border-color: teal;
+}
 
 </style>

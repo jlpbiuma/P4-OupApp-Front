@@ -6,7 +6,7 @@ import { useAuthStore } from '../../stores/authStore'
 <template>
   <v-main>
     <v-col align="center">
-      <v-row justify="center">
+      <v-row class="justify-center">
         <RouterLink to="/user/profile" style="text-decoration: none"
           ><v-btn class="ma-8 mt-5 mb-1" color="teal darken-3" elevation="1" fab outlined tile x-large
             ><v-icon>mdi-account</v-icon></v-btn
@@ -18,7 +18,7 @@ import { useAuthStore } from '../../stores/authStore'
           ><p justify="text-center" class="teal--text">Opciones</p></RouterLink
         >
       </v-row>
-      <v-row justify="center">
+      <v-row class="justify-center">
         <RouterLink to="/user/members" style="text-decoration: none"
           ><v-btn class="ma-8 mt-5 mb-1" color="teal darken-3" elevation="1" fab outlined tile x-large
             ><v-icon>mdi-account-group</v-icon></v-btn
@@ -28,14 +28,14 @@ import { useAuthStore } from '../../stores/authStore'
             ><v-icon>mdi-clipboard-text-clock</v-icon></v-btn
           ><p justify="text-center" class="teal--text">Actividad</p></RouterLink>
       </v-row>
-      <v-row justify="center">
+      <v-row class="justify-center">
         <RouterLink to="/user/plan" style="text-decoration: none"
           ><v-btn class="ma-8 mt-5 mb-1" color="teal darken-3" elevation="1" fab outlined tile x-large
             ><v-icon>mdi-account-star</v-icon></v-btn
           ><p justify="text-center" class="teal--text">Mi Plan</p></RouterLink>
       </v-row>
-      <v-row justify="center mt-5">
-      <v-btn color="error" @click="Logout"> Logout </v-btn>
+      <v-row class="justify-center mt-10">
+      <v-btn color="red lighten-2 white--text font-weight-bold" @click="Logout"> Logout </v-btn>
       </v-row>
     </v-col>
 </v-main>

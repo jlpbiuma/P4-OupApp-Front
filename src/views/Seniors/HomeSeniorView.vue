@@ -3,9 +3,7 @@ import HomeSeniorComponent from '../../components/Seniors/HomeSeniorComponent.vu
 </script>
 
 <template>
-    <div>
         <HomeSeniorComponent></HomeSeniorComponent>
-    </div>
 </template>
 
 <script>

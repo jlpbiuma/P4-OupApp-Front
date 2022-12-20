@@ -1,30 +1,34 @@
+<script setup>
+import API from '../../services/api.js'
+import { useAuthStore } from '../../stores/authStore'
+</script>
+
 <template>
-    <v-container width="400" height="844">
-        <v-card class="mx-auto" max-width="400" max-height="844">
+    <v-app>
+        <v-main style="height:100vw" display="flex">
             <v-toolbar color="teal darken-2" dark>
-                <v-toolbar-title>FOTOS</v-toolbar-title>
+                <v-toolbar-title style="font-size: x-large; font-weight: bold">FOTOS</v-toolbar-title>
             </v-toolbar>
-        </v-card>
-        <v-card class="mx-auto pt-20" max-width="400">
-            <v-carousel> <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src"><v-card elevation="2"
+            <v-carousel> <v-carousel-item v-for="(photo, index) in photos" :key="index" :src="photo.url"><v-card elevation="2"
                         shaped tile>
                         <b>
-                            <p>{{ comments[i] }}</p>
+                            <p>{{ photo.comment }}</p>
                         </b>
                     </v-card> </v-carousel-item>
             </v-carousel>
-            <v-row class="mx-auto pt-6" justify="start">
-                <div>
-                    <RouterLink to="/senior/">
-                        <v-btn x-large color="red darken-2" class="white--text"> <v-icon>
+        </v-main>
+
+        <v-footer class= "footer">
+            <div class="mb-2 justify-start" style="align-self:end">
+                    <RouterLink to="/senior/" style="text-decoration: none">
+                        <v-btn rounded x-large color="red darken-2" class="white--text" width="100px" height="70px"> <v-icon size="35px">
                                 mdi-arrow-left-bold-circle
                             </v-icon>
                         </v-btn>
                     </RouterLink>
                 </div>
-            </v-row>
-        </v-card>
-    </v-container>
+        </v-footer>
+    </v-app>
 </template>
 
 <script>
@@ -32,18 +36,21 @@ export default {
     name: 'PhotoComponent',
     data () {
         return {
-            items: [{
-                src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-            },
-            {
-                src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-            }
-            ],
-            comments: [
-                'Ardilli comiendo almendras',
-                'Nubes en el cielo'
-            ]
+            photos: null,
+            authStore: useAuthStore()
         }
+    },
+    async created () {
+        this.photos = await API.getPhotosBySeniorID(this.authStore.token, this.authStore.id)
     }
 }
 </script>
+
+<style scoped>
+.footer{
+  background-color:  rgb(255, 252, 244);
+}
+.v-main{
+    background-color:  rgb(255, 252, 244)
+}
+</style>

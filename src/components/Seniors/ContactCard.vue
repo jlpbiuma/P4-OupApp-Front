@@ -5,12 +5,12 @@ import API from '../../services/api.js'
 
 <template>
     <v-container>
-        <v-row justify="center pt-2">
+        <v-row class="justify-center pt-2">
                         <div>
-                            <RouterLink to="/senior/calllist/call">
-                                <v-btn x-large color="teal darken-2" class="white--text" width="200px" @click="call">
-                                    <v-avatar>
-                                        <img src="jiji.jpg">
+                            <RouterLink to="/senior/calllist/call" style="text-decoration: none">
+                                <v-btn rounded x-large color="teal darken-2" class="rowcol justify-center white--text" width="300px" height="100px" @click="call">
+                                    <v-avatar width="50px" heigth="50px" class="mr-5">
+                                        <img :src=contact.url>
                                     </v-avatar>
                                     {{contact.apodo}}
                                     <v-icon right size="30px"> mdi-phone </v-icon>
@@ -38,7 +38,7 @@ export default {
                 id_s: this.authStore.id
             }
             await API.postActivityBySeniorID(this.authStore.token, activityObject, this.authStore.id)
-            this.authStore.callName(this.contact.apodo)
+            this.authStore.callName(this.contact.apodo, this.contact.url)
         }
     }
 }

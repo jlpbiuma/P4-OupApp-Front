@@ -3,42 +3,17 @@
 
 <template>
     <v-container>
-        <v-card class="mx-auto" max-width="500">
-            <v-card class="mx-auto" max-width="450" outlined>
-                <v-container>
+            <v-card class="mx-auto" width="340" outlined>
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="text-h5 mb-1">
+                            <v-list-item-title class="mb-1" style="font-size: x-large; font-weight: bold;">
                                 {{ reminder.title }}
                             </v-list-item-title>
-                            <v-list-item-subtitle class="text-h5">{{ reminder.description }}</v-list-item-subtitle>
-                            <v-col>
-                                <v-row class="align-end">
-                                    <v-row justify="end">
-                                        <div>
-                                            <v-btn x-large color="red darken-2" class="white--text"> <v-icon
-                                                    size="25px">
-                                                    mdi-volume-high
-                                                </v-icon>
-                                            </v-btn>
-                                        </div>
-                                    </v-row>
-                                    <v-row justify="end">
-                                        <div>
-                                            <v-btn x-large color="red darken-2" class="white--text"> <v-icon
-                                                    size="25px">
-                                                    mdi-bell
-                                                </v-icon>
-                                            </v-btn>
-                                        </div>
-                                    </v-row>
-                                </v-row>
-                            </v-col>
+                            <v-list-item-subtitle class="text-h6">{{ reminder.description }}</v-list-item-subtitle>
+                            <v-list-item-subtitle class="text-h6">{{ reminder.initialDate.slice(0, 10) + " / " + reminder.finalDate.slice(0, 10) }}</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
-                </v-container>
             </v-card>
-        </v-card>
     </v-container>
 </template>
 <script>

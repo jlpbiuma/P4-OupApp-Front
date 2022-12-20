@@ -33,8 +33,7 @@ import RemindersView from '../views/PostLogin/RemindersView.vue'
 import AddReminder from '../views/PostLogin/AddReminderView.vue'
 import BillingView from '../views/PostLogin/BillingView.vue'
 import AddNewMemberView from '../views/PostLogin/AddNewMemberView.vue'
-import AddPhoto from '../views/PostLogin/AddNewPhotoView.vue'
-
+import CallClientView from '../views/PostLogin/CallView.vue'
 // STORE
 import { useAuthStore } from '../stores/authStore'
 
@@ -199,14 +198,6 @@ const routes = [
     }
   },
   {
-    path: '/user/members/newphoto',
-    name: 'AddPhotoView',
-    component: AddPhotoView,
-    meta: {
-      requiresAuthClient: true
-    }
-  },
-  {
     path: '/user/members/reminders',
     name: 'RemindersView',
     component: RemindersView,
@@ -256,8 +247,16 @@ const routes = [
   },
   {
     path: '/user/members/addphoto',
-    name: 'AddPhoto',
-    component: AddPhoto,
+    name: 'AddPhotoView',
+    component: AddPhotoView,
+    meta: {
+      requiresAuthClient: true
+    }
+  },
+  {
+    path: '/user/members/call',
+    name: 'CallClientView',
+    component: CallClientView,
     meta: {
       requiresAuthClient: true
     }
@@ -265,11 +264,11 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history'
 })
 
 router.beforeEach((to, _, next) => {
-  console.log('Has cambiado de ruta')
   const authStore = useAuthStore()
   if (to.meta.requiresAuthSenior && !authStore.isLoggedIn) {
     next({ name: 'SeniorLoginView' })

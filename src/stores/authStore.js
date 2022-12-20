@@ -11,6 +11,7 @@ export const useAuthStore = defineStore('auth', {
       rol: useStorage('rol', null),
       actualPage: useStorage('actualPage', null),
       call: useStorage('call', null),
+      callImage: useStorage('callImage', null),
       seniorID: useStorage('seniorID', null)
     }
   },
@@ -33,8 +34,9 @@ export const useAuthStore = defineStore('auth', {
       this.rol = response.rol
       this.name = response.name
     },
-    callName (name) {
+    callName (name, image) {
       this.call = name
+      this.callImage = image
     }
   }
 })

@@ -3,7 +3,13 @@ import MembersListActivityComponent from '../../components/PostLogin/MembersList
 </script>
 
 <template>
-  <MembersListActivityComponent></MembersListActivityComponent>
+  <v-main>
+    <v-row class="justify-center font-weight-bold">
+            <p>Actividad de miembros</p>
+        </v-row>
+
+          <MembersListActivityComponent></MembersListActivityComponent>
+</v-main>
 </template>
 
 <script>

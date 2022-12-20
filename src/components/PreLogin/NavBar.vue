@@ -12,21 +12,17 @@ import { useAuthStore } from '../../stores/authStore'
         clipped-left
         fixed
         tabs
-        :flat="!scrolled"
         class="z-toolbar"
       >
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         <GoBack></GoBack>
-        <v-row justify="center mr-8" no-gutters>
+        <v-row class="justify-center mr-12" no-gutters>
           <RouterLink to="/" class="white--text" style="text-decoration: none">
             <v-toolbar-title><b>Oup</b>App</v-toolbar-title>
           </RouterLink>
         </v-row>
-        <v-space />
-        <v-btn icon v-if="authStore.isLoggedIn">
-          <RouterLink to="/user" style="text-decoration: none; color: white"
-            ><v-icon>mdi-account-circle</v-icon>
-          </RouterLink>
+        <v-btn icon v-if="authStore.isLoggedIn" @click="goToControlPage">
+            <v-icon>mdi-account-circle</v-icon>
         </v-btn>
         <RouterLink
           v-else
@@ -94,15 +90,8 @@ import { useAuthStore } from '../../stores/authStore'
           </v-list-item-icon>
         </v-list-item>
         <v-list-item  v-if=authStore.isLoggedIn>
-          <v-list-item-icon>
-            <RouterLink
-              to="/user"
-              style="text-decoration: none"
-              class="black--text"
-              logIn="false"
-            >
+          <v-list-item-icon @click="goToControlPage">
               <v-icon>mdi-account-cog</v-icon>&nbsp;&nbsp;&nbsp;Panel de control
-            </RouterLink>
           </v-list-item-icon>
         </v-list-item>
         <v-list-item  v-if=!authStore.isLoggedIn>
@@ -201,7 +190,16 @@ export default {
       { title: 'About', icon: 'mdi-help-box' }
     ],
     authStore: useAuthStore()
-  })
+  }),
+  methods: {
+    goToControlPage () {
+      if (this.authStore.rol === 'client') {
+        this.$router.push('/user')
+      } else if (this.authStore.rol === 'senior') {
+        this.$router.push('/senior/')
+      }
+    }
+  }
 }
 </script>
 

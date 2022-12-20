@@ -3,13 +3,14 @@ import ReminderList from '../../components/PostLogin/ReminderList.vue'
 </script>
 
 <template>
-  <div>
-    <ReminderList></ReminderList>
-  </div>
+    <v-main>
+        <v-row class="justify-center font-weight-bold">
+          <p>Recordatorios</p>
+        </v-row>
+        <v-row>
+        <ReminderList></ReminderList>
+        </v-row>
+    </v-main>
 </template>
 
-<script>
-</script>
-
-<style>
-</style>
+<style></style>

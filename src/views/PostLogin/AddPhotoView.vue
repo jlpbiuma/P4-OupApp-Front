@@ -1,14 +1,16 @@
 <script setup>
-
+import AddNewPhotoComponent from '../../components/PostLogin/AddNewPhotoComponent.vue'
 </script>
 
 <template>
-    <div>
-    </div>
+    <v-container>
+        <AddNewPhotoComponent></AddNewPhotoComponent>
+    </v-container>
 </template>
 
 <script>
 </script>
 
-<style>
+<style scoped>
+
 </style>

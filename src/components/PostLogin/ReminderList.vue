@@ -6,14 +6,16 @@ import { useAuthStore } from '../../stores/authStore.js'
 
 <template>
     <v-container>
-        <v-row justify="center font-weight-bold">
-            <RouterLink to="/user/members/reminders/add">
-                <v-button>Add new reminder</v-button>
+        <v-row class="justify-center font-weight-bold">
+            <RouterLink class="text-decoration-none" to="/user/members/reminders/add">
+                <v-btn medium color="teal lighten-3" class="white--text font-weight-bold mt-5"
+                width="auto"
+                elevation="1">Add new reminder</v-btn>
             </RouterLink>
         </v-row>
-        <div v-for="reminder in reminders" :key="reminder.id">
+        <v-row class="justify-center font-weight-bold" v-for="reminder in reminders" :key="reminder.id">
             <ReminderCard :reminder="reminder"></ReminderCard>
-        </div>
+        </v-row>
     </v-container>
 </template>
 

@@ -5,11 +5,13 @@ import { useAuthStore } from '../../stores/authStore.js'
 </script>
 
 <template>
-  <div>
-    <div v-for="(contact, index) in contacts" :key="index">
-      <ContactCard :contact="contact"></ContactCard>
-    </div>
-  </div>
+  <v-container>
+    <v-row class="justify-center">
+      <div ju v-for="(contact, index) in contacts" :key="index">
+        <ContactCard :contact="contact"></ContactCard>
+      </div>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
