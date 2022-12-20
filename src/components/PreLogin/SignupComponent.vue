@@ -4,7 +4,8 @@ import { useAuthStore } from '../../stores/authStore'
 </script>
 
 <template>
-  <v-row>
+  <div>
+
     <v-row class="justify-center font-weight-bold mt-5">
       <p>Sign Up</p>
     </v-row>
@@ -16,11 +17,10 @@ import { useAuthStore } from '../../stores/authStore'
                     </div>
                 </v-alert>
             </div>
-        <v-row class="justify-center">
-          <v-file-input type="file" v-model="file" ref="file" label="Foto" accept="image/*"></v-file-input>
-        </v-row>
-    <v-row class="justify-center">
-      <v-form ref="form" lazy-validation class="justify-center">
+          </v-row>
+          <v-row class="justify-center">
+            <v-form ref="form" lazy-validation class="justify-center">
+        <v-file-input type="file" v-model="file" ref="file" label="Foto" accept="image/*"></v-file-input>
         <v-text-field v-model="name" label="Nombre" required></v-text-field>
         <v-text-field
           v-model="apellidos"
@@ -66,8 +66,9 @@ import { useAuthStore } from '../../stores/authStore'
         >Crear Cuenta</v-btn
       >
     </v-row>
-  </v-container>
+  </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -153,7 +154,7 @@ export default {
       this.newUser = signupObject
       let response
       try {
-        response = await api.signup(this.newUser)
+        response = await api.signup(this.newUser, this.file)
       } catch {
         this.errorMessages[0] = 'El email ya existe'
       }
