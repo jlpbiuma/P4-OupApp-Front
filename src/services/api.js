@@ -2,7 +2,7 @@ import axios from 'axios'
 import firebase from './firebase'
 
 const API = axios.create({
-  baseURL: 'http://localhost:3000/api'
+  baseURL: 'https://p4-oupapp-back-production.up.railway.app'
 })
 
 async function signup (newUser, file) {
