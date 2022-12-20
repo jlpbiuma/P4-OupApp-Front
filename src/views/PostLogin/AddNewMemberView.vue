@@ -117,7 +117,6 @@ export default {
       if (response.error) {
         alert('Error creating account')
       } else {
-        console.log(response)
         const clientObject = await API.getUserByIDNoPhoto(this.authStore.token, this.authStore.id)
         const contactObject = this.fromClientToContact(clientObject, response.id)
         await API.addClientContactForSenior(this.authStore.token, contactObject, response.id)

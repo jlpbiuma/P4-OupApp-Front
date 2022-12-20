@@ -4,7 +4,7 @@ import { useAuthStore } from '../../stores/authStore'
 </script>
 
 <template>
-  <v-container>
+  <v-row>
     <v-row class="justify-center font-weight-bold mt-5">
       <p>Sign Up</p>
     </v-row>
@@ -16,6 +16,8 @@ import { useAuthStore } from '../../stores/authStore'
                     </div>
                 </v-alert>
             </div>
+        <v-row class="justify-center">
+          <v-file-input type="file" v-model="file" ref="file" label="Foto" accept="image/*"></v-file-input>
         </v-row>
     <v-row class="justify-center">
       <v-form ref="form" lazy-validation class="justify-center">
@@ -91,6 +93,7 @@ export default {
       phone: '',
       name: '',
       dni: '',
+      file: null,
       apellidos: '',
       errorMessages: [],
       showError: false,
@@ -158,7 +161,7 @@ export default {
         alert('Error creating account')
       } else {
         this.authStore.login(response)
-        this.$router.push('/')
+        this.$router.push('/user')
       }
     }
   }
